@@ -10,11 +10,11 @@
 
 // All errors are my own.
 
-var k q b ;
+var k q b u ;
 
 varexo epsilon;
 
-parameters phi lambda a R v pai kss qss bss;
+parameters phi lambda a R v pai kss qss bss uss;
 
 a=1;
 R=1.01;
@@ -26,17 +26,20 @@ lambda=.975;
 qss=(R/(R-1))*(pai*a-(1-lambda)*(1-R+pai*R)*phi)/(lambda*pai+(1-lambda)*(1-R+pai*R));
 kss  = qss * (R-1)/R + v;
 bss  = ((a + lambda*phi - phi)/(R-1)) * kss ;
+uss = (R-1)*qss/R;
 
 model;
 q = q(+1)/R + (k - v);
 k = (1-pai)*lambda*k(-1)+(pai/(q+phi-q(+1)/R))*( (a*(1+epsilon) +lambda*phi + q)*k(-1) - R*b(-1));
 b = R*b(-1)+q*(k - k(-1))+phi*(k -lambda*k(-1))-a*(1+epsilon)*k(-1);
+u = q-q(+1)/R;
 end;
 
 initval;
 q=qss;
 b=bss;
 k=kss;
+u=uss;
 end;
 
 resid;
@@ -52,6 +55,19 @@ end;
 simul(periods=600);
 
 figure
-plot(k(1:40)/kss),hold on,plot(b(1:40)/bss,'r')
-hold on,plot(q(1:40)/qss,'g')
-legend('k = K_{t}/K*','b = B_{t}/B*','q = q_{t}/q*')
+plot(k(1:30)/kss),hold on,plot(b(1:30)/bss,'r')
+hold on,plot(q(1:30)/qss,'g')
+hold on,plot(u(1:30)/uss,'m')
+legend('u = u_{t} / u*','k = K_{t}/K*','q = q_{t}/q*','b = B_{t}/B*')
+
+figure
+subplot(221),plot(k(1:30)),title('k = K_{t}')
+subplot(222),plot(b(1:30)),title('b = B_{t}')
+subplot(223),plot(q(1:30)),title('q = q_{t}')
+subplot(224),plot(u(1:30)),title('u = u_{t}')
+
+figure
+plot(k(1:100)/kss),hold on,plot(b(1:100)/bss,'r')
+hold on,plot(q(1:100)/qss,'g')
+hold on,plot(u(1:100)/uss,'m')
+legend('u = u_{t} / u*','k = K_{t}/K*','q = q_{t}/q*','b = B_{t}/B*')

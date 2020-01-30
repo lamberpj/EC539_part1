@@ -25,7 +25,7 @@ function [residual, g1, g2, g3] = km97_rep_PL_static(y, x, params)
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-residual = zeros( 4, 1);
+residual = zeros( 3, 1);
 
 %
 % Model equations
@@ -41,14 +41,11 @@ residual(2)= lhs-rhs;
 lhs =y(3);
 rhs =params(4)*y(3)+params(1)*(y(1)-y(1)*params(2))-y(1)*params(3)*(1+x(1));
 residual(3)= lhs-rhs;
-lhs =y(4);
-rhs =y(2)-y(2)/params(4);
-residual(4)= lhs-rhs;
 if ~isreal(residual)
   residual = real(residual)+imag(residual).^2;
 end
 if nargout >= 2,
-  g1 = zeros(4, 4);
+  g1 = zeros(3, 3);
 
   %
   % Jacobian matrix
@@ -61,8 +58,6 @@ if nargout >= 2,
   g1(2,3)=(-(T24*(-params(4))));
   g1(3,1)=(-(params(1)*(1-params(2))-params(3)*(1+x(1))));
   g1(3,3)=1-params(4);
-  g1(4,2)=(-(1-1/params(4)));
-  g1(4,4)=1;
   if ~isreal(g1)
     g1 = real(g1)+2*imag(g1);
   end
@@ -71,13 +66,13 @@ if nargout >= 3,
   % Hessian matrix
   %
 
-  g2 = sparse([],[],[],4,16);
+  g2 = sparse([],[],[],3,9);
 if nargout >= 4,
   %
   % Third order derivatives
   %
 
-  g3 = sparse([],[],[],4,64);
+  g3 = sparse([],[],[],3,27);
 end
 end
 end

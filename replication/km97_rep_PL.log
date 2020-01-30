@@ -1,6 +1,6 @@
 Starting Dynare (version 4.5.6).
 Starting preprocessing of the model file ...
-Found 4 equation(s).
+Found 3 equation(s).
 Evaluating expressions...done
 Computing static model derivatives:
  - order 1
@@ -18,22 +18,20 @@ Residuals of the static equations:
 Equation number 1 : 0
 Equation number 2 : 0
 Equation number 3 : 0
-Equation number 4 : 0
 
 
 
 STEADY-STATE RESULTS:
 
-k 		 2.54623
+k 		 5.46229
 q 		 55.1691
-b 		 127.311
-u 		 0.546229
+b 		 273.114
 
 EIGENVALUES:
          Modulus             Real        Imaginary
 
-          0.9344           0.9304          0.08567
-          0.9344           0.9304         -0.08567
+          0.9265           0.9163           0.1367
+          0.9265           0.9163          -0.1367
             1.01             1.01                0
 
 
@@ -46,11 +44,11 @@ The rank condition is verified.
 --------------------------------------------------------
 MODEL SIMULATION:
 
-Iter: 1,	 err. = 0.025462, 	 time = 0.015783
-Iter: 2,	 err. = 0.00013992, 	 time = 0.008426
-Iter: 3,	 err. = 5.3675e-08, 	 time = 0.008211
+Iter: 1,	 err. = 0.054623, 	 time = 0.015912
+Iter: 2,	 err. = 0.0012934, 	 time = 0.006744
+Iter: 3,	 err. = 6.1071e-06, 	 time = 0.006314
 
-Total time of simulation: 0.039086
+Total time of simulation: 0.03939
 --------------------------------------------------------
 
 Perfect foresight solution found.
